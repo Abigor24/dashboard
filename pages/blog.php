@@ -30,7 +30,7 @@
             <p class="text-base text-gray-400 leading-relaxed mb-7">
             <?= $posts['intro'] ?>
             </p>
-            <a href="javascript:void(0)" class="inline-block py-2 px-7 border border-[#E5E7EB] rounded-full text-base text-body-color font-medium hover:border-blue-500 hover:bg-blue-500 hover:text-white transition-all duration-500">
+            <a href="/?page=post&post_id=<?= $posts['id'] ?>" class="inline-block py-2 px-7 border border-[#E5E7EB] rounded-full text-base text-body-color font-medium hover:border-blue-500 hover:bg-blue-500 hover:text-white transition-all duration-500">
               View Details
             </a>
           </div>
