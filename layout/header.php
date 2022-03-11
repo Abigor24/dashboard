@@ -1,3 +1,8 @@
+<?php
+  $title = "PHP Blog";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

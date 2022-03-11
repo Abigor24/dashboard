@@ -1,9 +1,3 @@
-<?php
-$title = "404";
-?>
-
-<?php include "./layout/header.php"; ?>
-
 <div class="min-h-screen md:flex">
   <div class="flex items-center justify-center w-full py-10 bg-white md:w-1/2">
     <div class="max-w-md">
@@ -24,5 +18,3 @@ $title = "404";
     </div>
   </div>
 </div>
-
-<?php include "./layout/footer.php"; ?>
