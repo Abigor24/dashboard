@@ -2,8 +2,6 @@
 
 <?php
   require_once "./include/function.php";
-  
-  set_title("Главная");
 ?>
 
 <div class="max-w-6xl m-auto mt-10">

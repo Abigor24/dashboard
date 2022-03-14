@@ -13,22 +13,34 @@
     <?php
     if ($url) {
         switch ($url) {
+            #pages
             case 'about':
                 include "./layout/nav.php";
                 include "./pages/about.php";
-                break;
-            case 'blog':
-                include "./layout/nav.php";
-                include "./pages/blog.php";
                 break;
             case 'contacts':
                 include "./layout/nav.php";
                 include "./pages/contacts.php";
                 break;
 
+            #posts|pages
+            case 'blog':
+                include "./layout/nav.php";
+                include "./pages/blog.php";
+                break;
             case 'post':
                 include "./layout/nav.php";
                 include "./pages/post.php";
+                break;
+
+            #admin menu
+            case 'add-user':
+                include "./layout/nav.php";
+                include "./pages/add-user.php";
+                break;
+            case 'add-posts':
+                include "./layout/nav.php";
+                include "./pages/add-posts.php";
                 break;
             
             default:

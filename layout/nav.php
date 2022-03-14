@@ -20,6 +20,8 @@ $result = mysqli_query($connect, $nav_query);
       <?php while ($nav = mysqli_fetch_assoc($result)) : ?>
         <a href="<?= $nav['url'] ?>" class="nav__link block px-4 py-2 text-sm bg-transition rounded-lg transition-all duration-500 hover:bg-gray-800 ml-2"><?= $nav['title'] ?></a>
       <?php endwhile ?>
+      <a href="/?page=add-user" class="nav__link block px-4 py-2 text-sm bg-transition rounded-lg transition-all duration-500 hover:bg-gray-800 ml-2">Add User</a>
+      <a href="/?page=add-posts" class="nav__link block px-4 py-2 text-sm bg-transition rounded-lg transition-all duration-500 hover:bg-gray-800 ml-2">Add Posts</a>
     </nav>
     <div id="menuToggle">
       <input type="checkbox" />
