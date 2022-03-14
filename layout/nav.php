@@ -60,7 +60,7 @@ $result = mysqli_query($connect, $nav_query);
             </div>
             
               <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-              <a href="/?page=profile" class="bg-gray-transparent hover:bg-indigo-500 hover:text-white transition-all duration-500 text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Настройки профиль</a>
+              <a href="/?page=profile" class="bg-gray-transparent hover:bg-indigo-500 hover:text-white transition-all duration-500 text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Настройки</a>
               <a href="/?page=auth&logout=1" type="submit" class="bg-gray-transparent hover:bg-indigo-500 hover:text-white transition-all duration-500 text-gray-700 block w-full text-left px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Выйти</a>
             </div>
           </div>

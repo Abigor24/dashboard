@@ -5,9 +5,9 @@
 
       <div class="w-16 h-1 my-3 bg-primary md:my-6"></div>
 
-      <p class="text-2xl font-light leading-normal text-gray-600 md:text-3xl"> Not Found </p>
+      <p class="text-2xl font-light leading-normal text-gray-600 md:text-3xl"> Страница не найдена </p>
       <a href="/">
-        <button class="px-4 py-2 mt-4 text-lg text-white transition-colors duration-200 transform rounded-lg hover:bg-teal-500 bg-teal-300"> Go Home </button>
+        <button class="px-4 py-2 mt-4 text-lg text-white transition-colors duration-200 transform rounded-lg hover:bg-teal-500 bg-teal-300"> Вернуться домой </button>
       </a>
     </div>
   </div>
