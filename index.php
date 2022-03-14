@@ -29,6 +29,10 @@
                 include "./layout/nav.php";
                 include "./pages/contacts.php";
                 break;
+            case 'helps':
+                include "./layout/nav.php";
+                include "./pages/helps.php";
+                break;
 
             #posts|pages
             case 'blog':

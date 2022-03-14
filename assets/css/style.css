@@ -4,6 +4,34 @@
   font-family: 'Rubik', sans-serif;
 }
 
+::selection{
+  color: #fff;
+  background-color: #6366F1;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 100px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1a1b44;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6366F1;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #8789fc;
+}
+
+
+
 #drop-menu{
   /* display: none; */
   top: 55px;

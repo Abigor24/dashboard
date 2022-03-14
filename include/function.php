@@ -40,7 +40,7 @@
       </div>
 
    <?php }
-   
+
     return $result;
   }
 
@@ -94,6 +94,4 @@
    <?php } 
 
     return $result;
-
   }
-  

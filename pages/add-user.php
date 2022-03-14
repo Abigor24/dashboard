@@ -7,8 +7,9 @@
     redirect_to('/?page=404');
   }
 
-  if(isset($_POST['create'])){
-
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $err = [];
+    
     $name = clear_field($_POST['name']);
     $username = clear_field($_POST['username']);
     $email = clear_field($_POST['email']);
@@ -36,7 +37,7 @@
 
 
   <div class="mt-5 md:mt-0 md:col-span-2">
-    <form action="<?php $_SERVER['REQUEST_URI'] ?>" method="POST">
+    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
       <div class="overflow-hidden sm:rounded-2xl border border-slate-200">
         <div class="px-4 py-5 bg-white sm:p-6">
           <div class="grid grid-cols-6 gap-6">
