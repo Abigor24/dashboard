@@ -39,6 +39,10 @@
                 include "./layout/nav.php";
                 include "./pages/post.php";
                 break;
+            case 'profile':
+                include "./layout/nav.php";
+                include "./pages/profile.php";
+                break;
 
             #admin menu
             case 'add-user':
@@ -54,6 +58,7 @@
                 include "./pages/auth.php";
                 break;
             
+            
             default:
                 include "./pages/404.php";
                 break;
@@ -65,7 +70,7 @@
      }
     ?>
 
-
-     <?php ob_flush(); ?>
     <?php include "./layout/footer.php"; ?>
+
+    <?php ob_flush(); ?>
 </div>

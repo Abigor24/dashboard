@@ -5,11 +5,16 @@
 }
 
 #drop-menu{
-  display: none;
+  /* display: none; */
+  top: 55px;
+  transition: .6s all;
+  transform: translateY(-20px);
+  max-height: 0;
 }
 
 #drop-menu.active{
-  display: block;
+  max-height: 500px;
+  transform: translateY(0);
 }
 
 #menuToggle

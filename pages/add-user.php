@@ -3,24 +3,27 @@
   require_once "./include/config.php";
   require_once "./include/function.php";
 
-  if (!isset($_SESSION['is_auth'])) {
-    redirect_to('/');
+  if(!isset($_SESSION['is_auth'])){
+    redirect_to('/?page=404');
   }
 
   if(isset($_POST['create'])){
-    $login = trim(htmlspecialchars($_POST['name']));
-    $username = trim(htmlspecialchars($_POST['username']));
-    $email = trim(htmlspecialchars($_POST['email']));
-    $role = (int) $_POST['role'];
-    $password = trim(htmlspecialchars($_POST['password']));
+
+    $name = clear_field($_POST['name']);
+    $username = clear_field($_POST['username']);
+    $email = clear_field($_POST['email']);
+    $password = clear_field($_POST['password']);
     $hash_password = password_hash($password, PASSWORD_DEFAULT);
+    $role = (int) $_POST['role'];
 
     $cols = "(`name`, `username`, `email`, `password`, `role`)";
-    $value = "('$login', '$username', '$email', '$hash_password', '$role')";
+    $values = "('$name', '$username', '$email', '$hash_password', '$role')";
 
-    add_users_db('users', $cols, $value);
-
+    create_user_in_db('users', $cols, $values);
   }
+
+
+  
 
 ?>
 
