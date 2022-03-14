@@ -4,6 +4,14 @@
   font-family: 'Rubik', sans-serif;
 }
 
+#drop-menu{
+  display: none;
+}
+
+#drop-menu.active{
+  display: block;
+}
+
 #menuToggle
 {
   display: none;

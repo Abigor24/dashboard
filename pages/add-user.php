@@ -1,8 +1,26 @@
 <?php
 
   require_once "./include/config.php";
+  require_once "./include/function.php";
 
+  if (!isset($_SESSION['is_auth'])) {
+    redirect_to('/');
+  }
 
+  if(isset($_POST['create'])){
+    $login = trim(htmlspecialchars($_POST['name']));
+    $username = trim(htmlspecialchars($_POST['username']));
+    $email = trim(htmlspecialchars($_POST['email']));
+    $role = (int) $_POST['role'];
+    $password = trim(htmlspecialchars($_POST['password']));
+    $hash_password = password_hash($password, PASSWORD_DEFAULT);
+
+    $cols = "(`name`, `username`, `email`, `password`, `role`)";
+    $value = "('$login', '$username', '$email', '$hash_password', '$role')";
+
+    add_users_db('users', $cols, $value);
+
+  }
 
 ?>
 

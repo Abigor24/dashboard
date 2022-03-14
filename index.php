@@ -1,5 +1,12 @@
 <?php
 
+    session_start();
+    ob_start();
+
+?>
+
+<?php
+
     $url = null;
     if (isset($_GET['page'])) {
         $url = urlencode($_GET['page']);
@@ -42,6 +49,10 @@
                 include "./layout/nav.php";
                 include "./pages/add-posts.php";
                 break;
+            case 'auth':
+                include "./layout/nav.php";
+                include "./pages/auth.php";
+                break;
             
             default:
                 include "./pages/404.php";
@@ -54,5 +65,7 @@
      }
     ?>
 
+
+     <?php ob_flush(); ?>
     <?php include "./layout/footer.php"; ?>
 </div>
