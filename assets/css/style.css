@@ -41,6 +41,7 @@
 }
 
 #drop-menu.active{
+  z-index: 99999;
   max-height: 500px;
   transform: translateY(0);
 }

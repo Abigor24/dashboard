@@ -12,25 +12,27 @@ $result_posts = mysqli_query($connect, $posts_query);
 
 <div class="max-w-6xl m-auto mt-10">
   <div class="border-l-2 border-l-indigo-500 pl-2 mb-10 text-2xl font-bold">Блог</div>
-  <main class="py-4">
-    <div class="px-4">
-      <div class="block md:flex justify-between md:-mx-2">
-      <?php while ($posts = mysqli_fetch_assoc($result_posts)) : ?>
-          <div class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0">
-            <div class="bg-white rounded-xl overflow-hidden outline-none border border-slate-200 relative">
-              <img class="h-56 w-full object-cover object-center" src="<?= $posts['img'] ?>" alt="">
-              <div class="p-4 h-auto md:h-40 lg:h-48">
-                <a href="/?page=post&post_id=<?= $posts['id'] ?>" class="transition-all duration-500 block text-indigo-500 hover:text-indigo-600 font-semibold mb-2 text-lg md:text-base lg:text-lg">
-                  <?= $posts['title'] ?>
-                </a>
-                <div class="text-gray-600 text-sm leading-relaxed block md:text-xs lg:text-sm">
-                  <?= $posts['intro'] ?>
-                </div>
-              </div>
-            </div>
+
+  <div class="row grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full">
+  <?php while ($posts = mysqli_fetch_assoc($result_posts)) : ?>
+      <div class="col w-full px-4">
+        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden mb-10 transition-all duration-500 hover:shadow-2xl hover:shadow-black/10">
+          <img src="<?= $posts['img'] ?>" alt="image" class="w-full">
+          <div class="p-5">
+            <h3>
+              <a href="javascript:void(0)" class="block font-semibold text-xl mb-5 transition-all duration-500">
+                <?= $posts['title'] ?>
+              </a>
+            </h3>
+            <p class="text-base text-gray-400 leading-relaxed mb-7">
+              <?= $posts['intro'] ?>
+            </p>
+            <a href="/?page=post&post_id=<?= $posts['id'] ?>" class="inline-block py-2 px-7 border border-[#E5E7EB] rounded-full text-base text-body-color font-medium hover:border-blue-500 hover:bg-blue-500 hover:text-white transition-all duration-500">
+              View Details
+            </a>
           </div>
-        <?php endwhile ?>
+        </div>
       </div>
-    </div>
-  </main>
+    <?php endwhile ?>
+  </div>
 </div>
