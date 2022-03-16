@@ -1,7 +1,7 @@
 <?php include "./layout/header.php" ?>
 
 <?php
-require_once "./include/function.php";
+  require_once "./include/function.php";
 ?>
 
 <section class="flex items-center justify-center bg-gray-900" style="height: 500px;">

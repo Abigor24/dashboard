@@ -1,41 +1,94 @@
 <?php
 
-  require_once "./include/config.php";
-  require_once "./include/function.php";
+require_once "./include/config.php";
+require_once "./include/function.php";
 
-  if(!isset($_SESSION['is_auth'])){
-    redirect_to('/?page=auth');
-  }
+if (!isset($_SESSION['is_auth'])) {
+  redirect_to('/?page=auth');
+}
 
 
 ?>
 
-<div class="max-w-6xl m-auto mt-10">
-  <div class="border-l-2 border-l-indigo-500 pl-2 mb-10 text-2xl font-bold">Настройки профиля</div>
+<!-- component -->
+<link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
+<link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 
-
-
-
-  <div class="flex flex-col shadow bg-card rounded-b-2xl">
-    <div>
-      <img src="./assets/img/cover.jpg" alt="Cover image" class="h-40 lg:h-80 object-cover w-full rounded-t-2xl">
+<main class="profile-page">
+  <section class="relative block h-500-px">
+    <div class="absolute top-0 w-full h-full bg-center bg-cover" style="
+            background-image: url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80');
+          ">
+      <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black"></span>
     </div>
-    <div class="flex flex-col flex-0 lg:flex-row items-center max-w-5xl w-full mx-auto px-8 py-5 bg-card rounded-b-3xl">
-      <div class="rounded-full">
-        <img src="./assets/img/profile/male-04.jpg" alt="User avatar" class="w-16 h-16 rounded-full">
-      </div>
-      <div class="flex flex-col items-center lg:items-start mt-4 lg:mt-0 lg:ml-8">
-        <div class="text-lg font-bold leading-none text-gray-800"><?= $_SESSION['username'] ?></div>
-        <div class="text-secondary text-gray-400"><?= $_SESSION['email'] ?></div>
-      </div>
-      <div class="hidden lg:flex h-8 mx-8 border-l-2"></div>
-      <div class="flex items-center mt-6 lg:mt-0 space-x-6">
-        <div class="flex flex-col items-center text-gray-800"><span class="font-bold">200k</span><span class="text-sm font-medium text-secondary text-gray-400">FOLLOWERS</span></div>
-        <div class="flex flex-col items-center text-gray-800"><span class="font-bold">1.2k</span><span class="text-sm font-medium text-secondary text-gray-400">FOLLOWING</span></div>
+    <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px" style="transform: translateZ(0px)">
+      <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+        <polygon class="text-white fill-current" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
+  </section>
+  <section class="relative py-16">
+    <div class="container mx-auto px-4">
+      <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+        <div class="px-6">
+          <div class="flex flex-wrap justify-center">
+            <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
+              <div class="relative">
+                <img alt="..." src="./assets/img/profile/male-04.jpg" class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px">
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
+              <div class="py-6 px-3 mt-32 sm:mt-0">
+                <button class="bg-indigo-500 hover:bg-indigo-400 active:bg-indigo-600 uppercase text-white hover:shadow-md shadow text-xs px-5 py-3 rounded-xl outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+                  Connect
+                </button>
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 px-4 lg:order-1">
+              <div class="flex justify-center py-4 lg:pt-4 pt-8">
+                <div class="mr-4 p-3 text-center">
+                  <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">22</span><span class="text-sm text-blueGray-400">Friends</span>
+                </div>
+                <div class="mr-4 p-3 text-center">
+                  <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">10</span><span class="text-sm text-blueGray-400">Photos</span>
+                </div>
+                <div class="lg:mr-4 p-3 text-center">
+                  <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">89</span><span class="text-sm text-blueGray-400">Comments</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-12">
+            <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700">
+              <?= $_SESSION['username']; ?>
+            </h3>
+            <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+              <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
+              <?= $_SESSION['email']; ?>
+            </div>
+            <div class="mb-2 text-blueGray-600 mt-10">
+              <i class="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>Solution Manager - Creative Tim Officer
+            </div>
+            <div class="mb-2 text-blueGray-600">
+              <i class="fas fa-university mr-2 text-lg text-blueGray-400"></i>University of Computer Science
+            </div>
+          </div>
+          <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
+            <div class="flex flex-wrap justify-center">
+              <div class="w-full lg:w-9/12 px-4">
+                <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
+                  An artist of considerable range, Jenna the name taken by
+                  Melbourne-raised, Brooklyn-based Nick Murphy writes,
+                  performs and records all of his own music, giving it a
+                  warm, intimate feel with a solid groove structure. An
+                  artist of considerable range.
+                </p>
+                <a href="#pablo" class="font-normal text-indigo-500">Show more</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-
-  
-
-</div>
+  </section>
+</main>
