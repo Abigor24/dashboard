@@ -6,7 +6,36 @@ if (!isset($_SESSION['is_auth'])) {
   redirect_to('/?page=404');
 }
 
+if (isset($_POST['add-post'])) {
 
+  $title = clear_field($_POST['title']);
+  $intro = clear_field($_POST['intro']);
+  $quotes = clear_field($_POST['quotes']);
+  $text = $_POST['text'];
+
+
+  if (!empty($_FILES['image_url']['name'])) {
+    $uploaddir = './public/images/';
+    $image_url = $uploaddir . basename($_FILES['image_url']['name']);
+    if (copy($_FILES['image_url']['tmp_name'], $image_url)) {
+    } else {
+      echo "Произошла ошибка копирования";
+    }
+  } else {
+    $image_url = "./assets/img/no-image-import.jpg";
+  }
+
+
+
+  $query = "INSERT INTO `posts` (`title`,`intro`,`quotes`,`text`, `img`) VALUES ('$title', '$intro', '$quotes', '$text', '$image_url')";
+  $result = mysqli_query($connect, $query);
+
+  if ($result) {
+    redirect_to("/?page=blog");
+  } else {
+    echo "Не смогли сделать запрос!";
+  }
+}
 
 ?>
 
@@ -55,16 +84,17 @@ if (!isset($_SESSION['is_auth'])) {
 
           <div class="mb-8">
             <label class="text-xl text-gray-600">Полное описание</label></br>
-            <textarea name="text" class="border-gray-500 focus:border-indigo-500 transition-all duration-500 outline-none px-3 py-3 border border-slate-200/80 block w-full sm:text-sm rounded-xl">
+            <textarea id="editor" name="text" class="border-gray-500 focus:border-indigo-500 transition-all duration-500 outline-none px-3 py-3 border border-slate-200/80 block w-full sm:text-sm rounded-xl">
               </textarea>
           </div>
+        </div>
+        <div class="px-4 py-3 bg-gray-800 text-right sm:px-6">
+          <button type="submit" name="add-post" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">Создать</button>
         </div>
       </div>
   </div>
 
-  <div class="px-4 py-3 bg-gray-800 text-right sm:px-6">
-    <button type="submit" name="add-post" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">Создать</button>
-  </div>
+
 
 </div>
 </form>
@@ -74,7 +104,17 @@ if (!isset($_SESSION['is_auth'])) {
 
 
 
-<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
 <script>
   CKEDITOR.replace('text');
 </script>
+
+<!-- <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+
+<script>
+  ClassicEditor
+    .create(document.querySelector('#editor'))
+    .catch(error => {
+      console.error(error);
+    });
+</script> -->

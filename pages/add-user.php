@@ -7,7 +7,11 @@
     redirect_to('/?page=404');
   }
 
+  $roles_query = "SELECT * FROM `roles`";
+  $result = mysqli_query($connect, $roles_query);
+
   if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    
     $err = [];
     
     $name = clear_field($_POST['name']);
@@ -60,9 +64,13 @@
               <label for="role" class="block text-sm font-medium text-gray-700">Роли</label>
               <select id="role" name="role" autocomplete="role" class="mt-1 block w-full sm:text-sm border border-slate-200 py-3 px-3 rounded-xl outline-none focus:border-indigo-500 transition-all duration-500">
                 <option value="" default disabled selected>Выберите роль</option>
-                <option value="1">Администратор</option>
-                <option value="2">Модератор</option>
-                <option value="3">Пользователь</option>
+
+                <?php while ($roles = mysqli_fetch_assoc($result)): ?>
+
+                <option value="<?= $roles['id'] ?>"><?= $roles['name'] ?></option>
+
+                <?php endwhile ?>
+
               </select>
             </div>
 
