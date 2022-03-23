@@ -25,16 +25,11 @@ if (isset($_POST['add-post'])) {
     $image_url = "./assets/img/no-image-import.jpg";
   }
 
+  $cols = "(`title`,`intro`,`quotes`,`text`, `img`)";
+  $value = "('$title', '$intro', '$quotes', '$text', '$image_url')";
 
-
-  $query = "INSERT INTO `posts` (`title`,`intro`,`quotes`,`text`, `img`) VALUES ('$title', '$intro', '$quotes', '$text', '$image_url')";
-  $result = mysqli_query($connect, $query);
-
-  if ($result) {
-    redirect_to("/?page=blog");
-  } else {
-    echo "Не смогли сделать запрос!";
-  }
+  create_posts_in_db('posts', $cols, $value);
+  
 }
 
 ?>
@@ -110,7 +105,6 @@ if (isset($_POST['add-post'])) {
 </script>
 
 <!-- <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
-
 <script>
   ClassicEditor
     .create(document.querySelector('#editor'))

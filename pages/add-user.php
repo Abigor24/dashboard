@@ -12,8 +12,6 @@
 
   if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
-    $err = [];
-    
     $name = clear_field($_POST['name']);
     $username = clear_field($_POST['username']);
     $email = clear_field($_POST['email']);
@@ -21,7 +19,7 @@
     $hash_password = password_hash($password, PASSWORD_DEFAULT);
     $role = (int) $_POST['role'];
 
-    $cols = "(`name`, `username`, `email`, `password`, `role`)";
+    $cols = "(`name`, `username`, `email`, `password`, `id_roles`)";
     $values = "('$name', '$username', '$email', '$hash_password', '$role')";
 
     create_user_in_db('users', $cols, $values);
@@ -67,7 +65,7 @@
 
                 <?php while ($roles = mysqli_fetch_assoc($result)): ?>
 
-                <option value="<?= $roles['id'] ?>"><?= $roles['name'] ?></option>
+                <option value="<?= $roles['id'] ?>"><?= $roles['roles_name'] ?></option>
 
                 <?php endwhile ?>
 

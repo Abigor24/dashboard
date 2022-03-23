@@ -1,7 +1,7 @@
 <?php
 
-    session_start();
-    ob_start();
+session_start();
+ob_start();
 
 ?>
 
@@ -14,13 +14,14 @@
 
 ?>
 
+
 <div class="wrapper">
     <?php include "./layout/header.php"; ?>
 
     <?php
     if ($url) {
         switch ($url) {
-            #pages
+                #pages
             case 'about':
                 include "./layout/nav.php";
                 include "./pages/about.php";
@@ -33,8 +34,12 @@
                 include "./layout/nav.php";
                 include "./pages/helps.php";
                 break;
+            case 'users':
+                include "./layout/nav.php";
+                include "./pages/users.php";
+                break;
 
-            #posts|pages
+                #posts|pages
             case 'blog':
                 include "./layout/nav.php";
                 include "./pages/blog.php";
@@ -48,7 +53,7 @@
                 include "./pages/profile.php";
                 break;
 
-            #admin menu
+                #admin menu
             case 'add-user':
                 include "./layout/nav.php";
                 include "./pages/add-user.php";
@@ -61,17 +66,17 @@
                 include "./layout/nav.php";
                 include "./pages/auth.php";
                 break;
-            
-            
+                
+
+
             default:
                 include "./pages/404.php";
                 break;
         }
-
     } else {
         include "./layout/nav.php";
         include "./pages/main.php";
-     }
+    }
     ?>
 
     <?php include "./layout/footer.php"; ?>
