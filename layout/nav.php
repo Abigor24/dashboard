@@ -20,8 +20,8 @@ $result = mysqli_query($connect, $nav_query);
       <?php while ($nav = mysqli_fetch_assoc($result)) : ?>
         <a href="<?= $nav['url'] ?>" class="nav__link block px-4 py-2 text-sm bg-transition rounded-lg transition-all duration-500 hover:bg-gray-800 ml-2"><?= $nav['title'] ?></a>
       <?php endwhile ?>
-      
-        <?php if(!isset($_SESSION['is_auth'])): ?>
+
+      <?php if (!isset($_SESSION['is_auth'])) : ?>
 
         <a href="/?page=helps" class="flex items-center nav__link px-4 py-2 text-sm bg-transition rounded-lg transition-all duration-500 hover:bg-gray-800 ml-2" role="menuitem" tabindex="-1" id="menu-item-0">
           <span class="mr-2">
@@ -95,14 +95,14 @@ $result = mysqli_query($connect, $nav_query);
                 </span>
                 Читать документацию</a>
 
-                <a href="/?page=users" class="rounded-lg flex items-center bg-gray-transparent hover:bg-indigo-500 hover:text-white transition-all duration-500 text-gray-700 px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
+              <a href="/?page=users" class="rounded-lg flex items-center bg-gray-transparent hover:bg-indigo-500 hover:text-white transition-all duration-500 text-gray-700 px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
                 <span class="mr-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                  </svg>
                 </span>
                 Пользователи
-                </a>
+              </a>
 
 
               <div class="hidden sm:block" aria-hidden="true">
@@ -139,11 +139,10 @@ $result = mysqli_query($connect, $nav_query);
       <?php endif ?>
 
     </nav>
-    <div id="menuToggle">
-      <input type="checkbox" />
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+    <svg id="menuToggle" class="ham hamRotate ham8" viewBox="0 0 100 100" width="80" onclick="this.classList.toggle('active')">
+      <path class="line top" d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20" />
+      <path class="line middle" d="m 30,50 h 40" />
+      <path class="line bottom" d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20" />
+    </svg>
   </div>
 </header>

@@ -96,19 +96,17 @@ if (isset($_POST['add-post'])) {
 </div>
 </div>
 
-
-
-
-<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
+<!-- <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
 <script>
   CKEDITOR.replace('text');
-</script>
+</script> -->
 
-<!-- <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
 <script>
   ClassicEditor
     .create(document.querySelector('#editor'))
     .catch(error => {
       console.error(error);
     });
-</script> -->
+</script>

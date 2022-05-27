@@ -8,7 +8,8 @@
   }
 
 
-  $user_query = "SELECT * FROM users AS users INNER JOIN roles AS roles ON users.id = roles.id";
+  // $user_query = "SELECT * FROM users AS users INNER JOIN roles AS roles ON users.id = roles.id";
+  $user_query = "SELECT * FROM `users`";
   $result = mysqli_query($connect, $user_query);
 
 
@@ -31,13 +32,13 @@
                 <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left uppercase dark:text-gray-400">
                   Роль
                 </th>
-                <th scope="col" class="relative py-3 px-6">
+                <!-- <th scope="col" class="relative py-3 px-6">
                   <span class="sr-only">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                       <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                     </svg>
                   </span>
-                </th>
+                </th> -->
               </tr>
             </thead>
             <tbody>
@@ -52,15 +53,15 @@
                   <?= $users['email'] ?>
                 </td>
                 <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                  <?= $users['roles_name'] ?>
+                  <?= $users['id_roles'] ?>
                 </td>
-                <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+                <!-- <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
                   <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                       <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                     </svg>
                   </a>
-                </td>
+                </td> -->
               </tr>
               <?php endwhile ?>
               
