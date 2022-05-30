@@ -1,3 +1,69 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.header{
+  @apply bg-gray-900 text-white py-5 px-5 sticky top-0 border-b border-slate-100/10 z-50;
+}
+
+.header-content{
+  @apply flex items-center justify-between max-w-6xl m-auto;
+}
+
+.nav{
+  @apply flex items-center;
+}
+
+.nav__link{
+  @apply flex items-center px-4 py-2 text-sm rounded-lg transition-all duration-500 hover:bg-gray-800 ml-2;
+}
+
+.nav__link-auth{
+  @apply block px-4 py-2 text-sm rounded-lg transition-all duration-500 bg-indigo-500 hover:bg-gray-800 ml-2;
+}
+
+.nav-button{
+  @apply flex items-center px-4 py-2 text-sm rounded-lg transition-all duration-500 bg-indigo-500 hover:bg-gray-800 ml-2
+}
+
+.nav-button img{
+  @apply inline-block h-6 w-6 rounded-full ring-2 ring-white mr-3;
+}
+
+.drop-menu{
+  @apply origin-top-right w-max p-2 overflow-hidden absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none;
+}
+
+.drop-content{
+  @apply rounded-lg flex items-center hover:bg-indigo-500 hover:text-white transition-all duration-500 text-gray-700 px-4 py-2 text-sm;
+}
+
+
+
+
+
+
+.profile-menu{
+  @apply max-w-6xl m-auto mt-5;
+}
+
+.form-input{
+  @apply w-full rounded-xl py-4 outline-none transition duration-500 text-base leading-none text-gray-900 p-3 focus:border-indigo-700 mt-4 bg-gray-100 border border-gray-200 placeholder-gray-100 resize-none;
+}
+
+.form-button{
+  @apply mt-10 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 duration-300;
+}
+
+
+
+
+
+
+.footer{
+  @apply mt-20 border-t bg-white relative z-50 bottom-0
+}
+
+.footer-container{
+  @apply container flex items-center justify-between px-6 py-8 mx-auto
+}

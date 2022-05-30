@@ -3,6 +3,7 @@
   require_once "./include/config.php";
   require_once "./include/function.php";
 
+
   if(isset($_GET['logout'])){
     session_destroy();
     redirect_to("/");
@@ -28,7 +29,6 @@
         echo "Нет такого пользователя";
       }
     }
-
     redirect_to("/");
   }
 

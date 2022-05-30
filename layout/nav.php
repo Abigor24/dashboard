@@ -4,11 +4,13 @@ require_once("./include/config.php");
 $nav_query = "SELECT * FROM `nav` WHERE visible = 1";
 $result = mysqli_query($connect, $nav_query);
 
+
+
 ?>
 
 
-<header class="bg-gray-900 text-white py-5 px-5 sticky top-0 border-b border-slate-100/10 z-50">
-  <div class="flex items-center justify-between max-w-6xl m-auto">
+<header class="header">
+  <div class="header-content">
     <a href="/" class="text-2xl font-bold flex items-center">
       <svg id="logo-35" width="50" height="39" viewBox="0 0 50 39" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M16.4992 2H37.5808L22.0816 24.9729H1L16.4992 2Z" class="ccompli1" fill="#6366F1"></path>
@@ -16,54 +18,30 @@ $result = mysqli_query($connect, $nav_query);
       </svg>
       <span class="ml-4">TailwindCSS</span>
     </a>
-    <nav class="nav flex items-center">
+    <nav class="nav">
       <?php while ($nav = mysqli_fetch_assoc($result)) : ?>
-        <a href="<?= $nav['url'] ?>" class="nav__link block px-4 py-2 text-sm bg-transition rounded-lg transition-all duration-500 hover:bg-gray-800 ml-2"><?= $nav['title'] ?></a>
+        <a href="<?= $nav['url'] ?>" class="nav__link"><?= $nav['title'] ?></a>
       <?php endwhile ?>
-
-      <?php if (!isset($_SESSION['is_auth'])) : ?>
-
-        <a href="/?page=helps" class="flex items-center nav__link px-4 py-2 text-sm bg-transition rounded-lg transition-all duration-500 hover:bg-gray-800 ml-2" role="menuitem" tabindex="-1" id="menu-item-0">
-          <span class="mr-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
-            </svg>
-          </span>
-          Читать документацию
-        </a>
-
-      <?php endif ?>
 
       <?php if (isset($_SESSION['is_auth'])) : ?>
 
-
-        <!-- This example requires Tailwind CSS v2.0+ -->
         <div class="relative inline-block text-left">
           <div>
-            <button type="button" class="nav__link flex items-center px-4 py-2 text-sm bg-transition rounded-lg transition-all duration-500 bg-indigo-500 hover:bg-gray-800 ml-2" id="menu-button" aria-expanded="true" aria-haspopup="true">
-              <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white mr-3" src="/assets/img/profile/male-04.jpg" alt="">
+            <button type="button" class="nav-button" id="menu-button" aria-expanded="true" aria-haspopup="true">
+              <img src="/assets/img/profile/male-04.jpg" alt="">
               <?= $_SESSION['username'] ?>
-              <!-- Heroicon name: solid/chevron-down -->
               <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
             </button>
           </div>
 
-          <!--
-            Dropdown menu, show/hide based on menu state.
-
-            Entering: "transition ease-out duration-100"
-              From: "transform opacity-0 scale-95"
-              To: "transform opacity-100 scale-100"
-            Leaving: "transition ease-in duration-75"
-              From: "transform opacity-100 scale-100"
-              To: "transform opacity-0 scale-95"
-          -->
-          <div id="drop-menu" class="origin-top-right w-max p-2 overflow-hidden absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+          <div id="drop-menu" class="drop-menu" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div class="" role="none">
 
-              <a href="/?page=add-user" class="rounded-lg flex items-center bg-gray-transparent hover:bg-indigo-500 hover:text-white transition-all duration-500 text-gray-700 px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
+            <?php if($_SESSION['name'] == 'admin') :?>
+
+              <a href="/?page=add-user" class="drop-content" role="menuitem" tabindex="-1" id="menu-item-0">
                 <span class="mr-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
@@ -71,7 +49,10 @@ $result = mysqli_query($connect, $nav_query);
                 </span>
                 Добавить аккаунт
               </a>
-              <a href="/?page=add-posts" class="rounded-lg flex items-center bg-gray-transparent hover:bg-indigo-500 hover:text-white transition-all duration-500 text-gray-700 px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
+
+            <?php endif ?>
+
+              <a href="/?page=add-posts" class="drop-content" role="menuitem" tabindex="-1" id="menu-item-0">
                 <span class="mr-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
@@ -79,6 +60,8 @@ $result = mysqli_query($connect, $nav_query);
                 </span>
                 Добавить новость
               </a>
+              <?php if($_SESSION['name'] == 'admin') :?>
+
 
               <div class="hidden sm:block" aria-hidden="true">
                 <div class="py-1">
@@ -86,23 +69,25 @@ $result = mysqli_query($connect, $nav_query);
                 </div>
               </div>
 
-
-              <a href="/?page=helps" class="rounded-lg flex items-center bg-gray-transparent hover:bg-indigo-500 hover:text-white transition-all duration-500 text-gray-700 px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
+              <a href="/?page=helps" class="drop-content" role="menuitem" tabindex="-1" id="menu-item-0">
                 <span class="mr-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
                   </svg>
                 </span>
-                Читать документацию</a>
+                Читать документацию
+              </a>
 
-              <a href="/?page=users" class="rounded-lg flex items-center bg-gray-transparent hover:bg-indigo-500 hover:text-white transition-all duration-500 text-gray-700 px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
+              <?php endif ?>
+
+              <!-- <a href="/?page=users" class="drop-content" role="menuitem" tabindex="-1" id="menu-item-0">
                 <span class="mr-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
                   </svg>
                 </span>
                 Пользователи
-              </a>
+              </a> -->
 
 
               <div class="hidden sm:block" aria-hidden="true">
@@ -111,8 +96,7 @@ $result = mysqli_query($connect, $nav_query);
                 </div>
               </div>
 
-              <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-              <a href="/?page=profile" class="rounded-lg flex items-center bg-gray-transparent hover:bg-indigo-500 hover:text-white transition-all duration-500 text-gray-700 px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">
+              <a href="/?page=profile" class="drop-content" role="menuitem" tabindex="-1" id="menu-item-0">
                 <span class="mr-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
@@ -134,7 +118,7 @@ $result = mysqli_query($connect, $nav_query);
 
       <?php else : ?>
 
-        <a href="/?page=auth" class="rounded-lg nav__link block px-4 py-2 text-sm bg-transition rounded-lg transition-all duration-500 bg-indigo-500 hover:bg-gray-800 ml-2">Войти</a>
+        <a href="/?page=auth" class="nav__link-auth">Войти</a>
 
       <?php endif ?>
 

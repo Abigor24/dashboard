@@ -7,8 +7,8 @@
 <section class="flex items-center justify-center bg-gray-900" style="height: 500px;">
   <div class="text-center">
     <p class="text-xl tracking-wider text-gray-300 uppercase">Добро пожаловать</p>
-    <h2 class="mt-6 text-3xl font-medium text-white md:text-5xl uppercase">Вас приветствует команда разработчиков <br>
-    <span class="font-bold text-indigo-500">профессионального лицея №98.</span></h2>
+    <h2 class="mt-6 text-3xl font-medium text-white md:text-5xl uppercase flex flex-col">Вас приветствует команда разработчиков
+    <span class="font-bold text-indigo-500 mt-3">профессионального лицея №98.</span></h2>
     <div class="flex justify-center mt-8">
       <a class="px-8 py-2 text-white transition-colors duration-300 transform bg-indigo-500 rounded hover:bg-gray-800" href="/">Начать путь</a>
     </div>

@@ -7,6 +7,26 @@
     redirect_to('/?page=auth');
   }
 
+  $users_query = "UPDATE * FROM `users`";
+  $result = mysqli_query($connect, $users_query);
+
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $id = $_SESSION['id'];
+
+    $update = "UPDATE `users` WHERE id = SET `username` = '$username', `email` = '$email'";
+
+    if (!$update){
+      echo 'error';
+    } else {
+      redirect_to('/?page=profile');
+    }
+
+
+  }
+
 ?>
 
 
@@ -16,16 +36,27 @@
       <h1 class="text-lg mb-5">Настройки</h1>
       <ul>
         <li class="mb-4">
-          <button class="pl-2 border-l border-indigo-500">Профиль</button>
+          <button class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+          </svg>
+            <span class="ml-2">Профиль</span>
+          </button>
         </li>
         <li class="mb-4">
-          <button>Безопастность</button>
+        
+          <button class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+          </svg>
+            <span class="ml-2">Безопастность</span>
+          </button>
         </li>
       </ul>
     </div>
 
     <div class="col-span-3 p-10 border border-slate-200 rounded-xl">
-      <h1 class="pb-4 text-lg">Настройки профиля пользователя <?= $_SESSION['name']; ?></h1>
+      <h1 class="pb-4 text-lg">Настройки профиля пользователя <span class="uppercase font-medium"><?= $_SESSION['name']; ?></span></h1>
 
       <div class="pt-4 border-t border-slate-200 flex">
         <div class="max-w-[100px] max-h-[100px] overflow-hidden object-cover rounded-full relative mr-10">
@@ -40,31 +71,21 @@
           </div>
         </div>
 
-        <form action="" method="post" class="w-full">
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" class="w-full">
           <div class="mb-10">
             <p>Имя</p>
-            <input class="w-full rounded-xl py-4 outline-none transition duration-500 text-base leading-none text-gray-900 p-3 focus:oultine-none focus:border-indigo-700 mt-4 bg-gray-100 border border-gray-200 placeholder-gray-100 resize-none" type="text" placeholder="Введите ваше имя" value="<?= $_SESSION['username']; ?>">
+            <input name="username" class="form-input" type="text" placeholder="Введите ваше имя" value="<?= $_SESSION['username']; ?>">
           </div>
           <div class="mb-10">
             <p>E-mail Адрес</p>
-            <input class="w-full rounded-xl py-4 outline-none transition duration-500 text-base leading-none text-gray-900 p-3 focus:oultine-none focus:border-indigo-700 mt-4 bg-gray-100 border border-gray-200 placeholder-gray-100 resize-none" type="text" placeholder="Введите ваш E-mail" value="<?= $_SESSION['email']; ?>">
+            <input name="email" class="form-input" type="text" placeholder="Введите ваш E-mail" value="<?= $_SESSION['email']; ?>">
           </div>
           <div>
             <p>Обо мне</p>
-            <textarea class="w-full rounded-xl py-4 outline-none transition duration-500 text-base leading-none text-gray-900 p-3 focus:oultine-none focus:border-indigo-700 mt-4 bg-gray-100 border border-gray-200 placeholder-gray-100 resize-none" name="" id="" cols="30" rows="10" placeholder="Введите описание о себе"></textarea>
+            <textarea class="form-input" name="" id="" cols="30" rows="10" placeholder="Введите описание о себе"></textarea>
           </div>
 
-          <?php if (true) : ?>
-
-          <button class="mt-10 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 duration-300">Изменить профиль</button>
-          
-          <?php else : ?>
-
-          <button class="mt-10 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 duration-300">Сохранить</button>
-
-          <?php endif ?>
-
-          
+          <button name="send" type="submit" class="form-button">Сохранить</button>
         </form>
 
       </div>

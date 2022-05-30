@@ -7,23 +7,33 @@
     redirect_to('/?page=404');
   }
 
-  $roles_query = "SELECT * FROM `roles`";
-  $result = mysqli_query($connect, $roles_query);
+  $admin_roles_query = "SELECT * FROM `users`";
+  $admin_roles_result = mysqli_query($connect, $admin_roles_query);
+  while($admin_roles = mysqli_fetch_assoc($admin_roles_result)){
+      if($admin_roles['id_roles'] == '1' || $_SESSION['name'] == 'admin' ){
+        $roles_query = "SELECT * FROM `roles`";
+        $result = mysqli_query($connect, $roles_query);
 
-  if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    
-    $name = clear_field($_POST['name']);
-    $username = clear_field($_POST['username']);
-    $email = clear_field($_POST['email']);
-    $password = clear_field($_POST['password']);
-    $hash_password = password_hash($password, PASSWORD_DEFAULT);
-    $role = (int) $_POST['role'];
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+          
+          $name = clear_field($_POST['name']);
+          $username = clear_field($_POST['username']);
+          $email = clear_field($_POST['email']);
+          $password = clear_field($_POST['password']);
+          $hash_password = password_hash($password, PASSWORD_DEFAULT);
+          $role = (int) $_POST['role'];
 
-    $cols = "(`name`, `username`, `email`, `password`, `id_roles`)";
-    $values = "('$name', '$username', '$email', '$hash_password', '$role')";
+          $cols = "(`name`, `username`, `email`, `password`, `id_roles`)";
+          $values = "('$name', '$username', '$email', '$hash_password', '$role')";
 
-    create_user_in_db('users', $cols, $values);
+          create_user_in_db('users', $cols, $values);
+        }
+      } else {
+        redirect_to('/?page=404');
+      }
   }
+
+  
 
 
   
