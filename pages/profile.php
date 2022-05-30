@@ -7,25 +7,11 @@
     redirect_to('/?page=auth');
   }
 
-  $users_query = "UPDATE * FROM `users`";
-  $result = mysqli_query($connect, $users_query);
 
-  if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $id = $_SESSION['id'];
-
-    $update = "UPDATE `users` WHERE id = SET `username` = '$username', `email` = '$email'";
-
-    if (!$update){
-      echo 'error';
-    } else {
-      redirect_to('/?page=profile');
-    }
-
-
-  }
+  $id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
+  $users_query = "SELECT * FROM `users` WHERE id = $id";
+  $users_result = mysqli_query($connect, $users_query);
+  $users_info = mysqli_fetch_assoc($users_result)
 
 ?>
 
@@ -56,7 +42,7 @@
     </div>
 
     <div class="col-span-3 p-10 border border-slate-200 rounded-xl">
-      <h1 class="pb-4 text-lg">Настройки профиля пользователя <span class="uppercase font-medium"><?= $_SESSION['name']; ?></span></h1>
+      <h1 class="pb-4 text-lg">Настройки профиля пользователя <span class="uppercase font-medium"><?= $users_info['name']; ?></span></h1>
 
       <div class="pt-4 border-t border-slate-200 flex">
         <div class="max-w-[100px] max-h-[100px] overflow-hidden object-cover rounded-full relative mr-10">
@@ -74,11 +60,11 @@
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" class="w-full">
           <div class="mb-10">
             <p>Имя</p>
-            <input name="username" class="form-input" type="text" placeholder="Введите ваше имя" value="<?= $_SESSION['username']; ?>">
+            <input name="username" class="form-input" type="text" placeholder="Введите ваше имя" value="<?= $users_info['username']; ?>">
           </div>
           <div class="mb-10">
             <p>E-mail Адрес</p>
-            <input name="email" class="form-input" type="text" placeholder="Введите ваш E-mail" value="<?= $_SESSION['email']; ?>">
+            <input name="email" class="form-input" type="text" placeholder="Введите ваш E-mail" value="<?= $users_info['email']; ?>">
           </div>
           <div>
             <p>Обо мне</p>

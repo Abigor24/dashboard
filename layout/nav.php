@@ -5,6 +5,10 @@ $nav_query = "SELECT * FROM `nav` WHERE visible = 1";
 $result = mysqli_query($connect, $nav_query);
 
 
+$users_query = "SELECT * FROM `users`";
+$users_result = mysqli_query($connect, $users_query);
+$users_info = mysqli_fetch_assoc($users_result);
+
 
 ?>
 
@@ -24,7 +28,6 @@ $result = mysqli_query($connect, $nav_query);
       <?php endwhile ?>
 
       <?php if (isset($_SESSION['is_auth'])) : ?>
-
         <div class="relative inline-block text-left">
           <div>
             <button type="button" class="nav-button" id="menu-button" aria-expanded="true" aria-haspopup="true">
@@ -38,20 +41,6 @@ $result = mysqli_query($connect, $nav_query);
 
           <div id="drop-menu" class="drop-menu" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div class="" role="none">
-
-            <?php if($_SESSION['name'] == 'admin') :?>
-
-              <a href="/?page=add-user" class="drop-content" role="menuitem" tabindex="-1" id="menu-item-0">
-                <span class="mr-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
-                  </svg>
-                </span>
-                Добавить аккаунт
-              </a>
-
-            <?php endif ?>
-
               <a href="/?page=add-posts" class="drop-content" role="menuitem" tabindex="-1" id="menu-item-0">
                 <span class="mr-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -60,7 +49,6 @@ $result = mysqli_query($connect, $nav_query);
                 </span>
                 Добавить новость
               </a>
-              <?php if($_SESSION['name'] == 'admin') :?>
 
 
               <div class="hidden sm:block" aria-hidden="true">
@@ -69,41 +57,15 @@ $result = mysqli_query($connect, $nav_query);
                 </div>
               </div>
 
-              <a href="/?page=helps" class="drop-content" role="menuitem" tabindex="-1" id="menu-item-0">
-                <span class="mr-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
-                  </svg>
-                </span>
-                Читать документацию
-              </a>
+                <a href="/?page=profile&user_id=<?= $users_info['id'] ?>" class="drop-content" role="menuitem" tabindex="-1" id="menu-item-0">
+                  <span class="mr-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  Настройки
+                </a>
 
-              <?php endif ?>
-
-              <!-- <a href="/?page=users" class="drop-content" role="menuitem" tabindex="-1" id="menu-item-0">
-                <span class="mr-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                  </svg>
-                </span>
-                Пользователи
-              </a> -->
-
-
-              <div class="hidden sm:block" aria-hidden="true">
-                <div class="py-1">
-                  <div class="border-t border-gray-200"></div>
-                </div>
-              </div>
-
-              <a href="/?page=profile" class="drop-content" role="menuitem" tabindex="-1" id="menu-item-0">
-                <span class="mr-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
-                  </svg>
-                </span>
-                Настройки
-              </a>
               <a href="/?page=auth&logout=1" type="submit" class="rounded-lg flex items-center bg-gray-transparent hover:bg-indigo-500 hover:text-white transition-all duration-500 text-gray-700 w-full text-left px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">
                 <span class="mr-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -115,8 +77,8 @@ $result = mysqli_query($connect, $nav_query);
             </div>
           </div>
         </div>
-
       <?php else : ?>
+        
 
         <a href="/?page=auth" class="nav__link-auth">Войти</a>
 

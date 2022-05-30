@@ -22,6 +22,7 @@
           $_SESSION['name'] = $user['name'];
           $_SESSION['username'] = $user['username'];
           $_SESSION['email'] = $user['email'];
+          $_SESSION['id'] = $user['id'];
         } else {
           echo "Не верный пароль!";
         }
