@@ -11,9 +11,10 @@
   $id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
   $users_query = "SELECT * FROM `users` WHERE id = $id";
   $users_result = mysqli_query($connect, $users_query);
-  $users_info = mysqli_fetch_assoc($users_result)
 
 ?>
+
+<?php while($users_info = mysqli_fetch_assoc($users_result)) : ?>
 
 
 <div class="max-w-6xl m-auto mt-10 mb-10">
@@ -79,3 +80,5 @@
   </div>
 
 </div>
+
+<?php endwhile ?>
