@@ -33,10 +33,10 @@ ob_start();
                 include "./layout/nav.php";
                 include "./pages/helps.php";
                 break;
-            // case 'users':
-            //     include "./layout/nav.php";
-            //     include "./pages/users.php";
-            //     break;
+            case 'users':
+                include "./layout/nav.php";
+                include "./pages/users.php";
+                break;
 
                 #posts|pages
             case 'blog':
