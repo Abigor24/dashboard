@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  ob_start();
+
+?>
+
 <?php include "./layout/header.php"; ?>
 <?php include "./include/config.php"; ?>
 
@@ -32,3 +38,4 @@ if ($url) {
 ?>
 
 <?php include "./layout/footer.php"; ?>
+<?php ob_flush(); ?>
